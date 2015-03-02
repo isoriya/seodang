@@ -1,4 +1,4 @@
-package com.dog.seodang.dao;
+package com.dog.seodang.home;
 
 import java.sql.SQLException;
 

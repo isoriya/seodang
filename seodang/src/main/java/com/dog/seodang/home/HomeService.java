@@ -1,11 +1,9 @@
-package com.dog.seodang.service;
+package com.dog.seodang.home;
 
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.dog.seodang.dao.HomeDao;
 
 @Service
 public class HomeService {

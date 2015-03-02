@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="contents">
+
+
+    <insert id="registContents" parameterType="com.dog.seodang.contents.vo.ContentsVo" useGeneratedKeys="true" keyProperty="contentsSeq">
+        INSERT INTO contents ( userSeq, contents) VALUES (#{userSeq}, #{contents}); 
+    </insert>
+    
+    <select id="getContents" parameterType="int" resultType="string">
+    	SELECT contents FROM contents WHERE contentsSeq=#{contentsSeq};
+    </select>
+</mapper>
