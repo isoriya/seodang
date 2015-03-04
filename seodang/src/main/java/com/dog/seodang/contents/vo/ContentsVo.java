@@ -4,6 +4,7 @@ public class ContentsVo {
 
 	private int contentsSeq;
 	private long userSeq;
+	private String title;
 	private String contents;
 
 	public int getContentsSeq() {
@@ -28,6 +29,14 @@ public class ContentsVo {
 
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
