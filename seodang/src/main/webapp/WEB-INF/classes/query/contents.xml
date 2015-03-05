@@ -12,4 +12,12 @@
     <select id="getContentsList" parameterType="int" resultType="com.dog.seodang.contents.vo.ContentsHeaderVo">
     	SELECT * FROM contents WHERE userSeq=#{userSeq};
     </select>
+    
+    <update id="modifyContents" parameterType="com.dog.seodang.contents.vo.ContentsVo">
+    	UPDATE contents SET title=#{title}, contents=#{contents} where contentsSeq=#{contentsSeq};
+    </update>
+    
+    <delete id="deleteContents" parameterType="int">
+    	DELETE FROM contents WHERE contentsSeq=#{contentsSeq};
+    </delete>
 </mapper>

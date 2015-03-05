@@ -99,4 +99,56 @@ public class ContentsController {
 		}
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/modifyContents", method = RequestMethod.POST)
+	public ModelAndView modifyContents(@RequestParam(required=true) int contentsSeq,
+			@RequestParam(required=true) String title,
+			@RequestParam(required=true) String contents) {
+		
+		logger.info("[modifyContents] contentsSeq=" + contentsSeq, " contents=" + contents);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			ContentsVo contentsVo = new ContentsVo();
+			contentsVo.setContentsSeq(contentsSeq);
+			contentsVo.setTitle(title);
+			contentsVo.setContents(contents);
+			boolean result = contentsService.modifyContents(contentsVo);
+			
+			modelAndView.setViewName("jsonView");
+			
+			
+			if(!result) {
+				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.NO_EXSIST);
+			} else {
+				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SUCCESS);
+				modelAndView.addObject("contentsSeq", contents);
+			}
+		} catch (Exception e) {
+			logger.error("[modifyContents] contetnsSeq=" + contentsSeq + " ,Exception=" + e.getMessage());
+			modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SERVER_ERROR);
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/deleteContents", method = RequestMethod.POST)
+	public ModelAndView deleteContents(@RequestParam(required=true) int contentsSeq) {
+		
+		logger.info("[deleteContents] contentsSeq=" + contentsSeq);
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			
+			boolean result = contentsService.deleteContents(contentsSeq);
+			modelAndView.setViewName("jsonView");
+			
+			if(!result) {
+				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.NO_EXSIST);
+			} else {
+				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SUCCESS);
+			}
+		} catch (Exception e) {
+			logger.error("[deleteContents] contetnsSeq=" + contentsSeq + " ,Exception=" + e.getMessage());
+			modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SERVER_ERROR);
+		}
+		return modelAndView;
+	}
 }

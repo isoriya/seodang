@@ -1,5 +1,6 @@
 package com.dog.seodang.contents;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,16 +15,24 @@ public class ContentsDao {
 	@Autowired	
     private SqlSession session;
  
-	public int registContents(ContentsVo contentsVo) {
+	public int registContents(ContentsVo contentsVo) throws SQLException{
 		return session.insert("contents.registContents", contentsVo);
 	}
 
-	public String getContents(int contetnsSeq) {
+	public String getContents(int contetnsSeq) throws SQLException{
 		return session.selectOne("contents.getContents", contetnsSeq);
 	}
 
-	public List<ContentsHeaderVo> getContentsList(int userSeq) {
+	public List<ContentsHeaderVo> getContentsList(int userSeq) throws SQLException{
 		return session.selectList("contents.getContentsList", userSeq);
 		
+	}
+
+	public int modifyContents(ContentsVo contentsVo) throws SQLException{
+		return session.update("contents.modifyContents", contentsVo);
+	}
+
+	public int deleteContents(int contentsSeq) throws SQLException{
+		return session.update("contents.deleteContents", contentsSeq);
 	}
 }
