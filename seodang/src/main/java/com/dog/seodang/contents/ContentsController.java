@@ -58,16 +58,16 @@ public class ContentsController {
 		logger.info("[getContents] contetnsSeq=" + contetnsSeq);
 		ModelAndView modelAndView = new ModelAndView();
 		try {
-			String contents = contentsService.getContents(contetnsSeq);
+			ContentsVo contentsVo = contentsService.getContents(contetnsSeq);
 			
 			modelAndView.setViewName("jsonView");
 			
 			
-			if(contents == null) {
+			if(contentsVo == null) {
 				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.NO_EXSIST);
 			} else {
 				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SUCCESS);
-				modelAndView.addObject("contentsSeq", contents);
+				modelAndView.addObject("contents", contentsVo);
 			}
 		} catch (Exception e) {
 			logger.error("[getContents] contetnsSeq=" + contetnsSeq + " ,Exception=" + e.getMessage());
@@ -121,7 +121,7 @@ public class ContentsController {
 				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.NO_EXSIST);
 			} else {
 				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SUCCESS);
-				modelAndView.addObject("contentsSeq", contents);
+				modelAndView.addObject("contentsSeq", contentsSeq);
 			}
 		} catch (Exception e) {
 			logger.error("[modifyContents] contetnsSeq=" + contentsSeq + " ,Exception=" + e.getMessage());

@@ -22,7 +22,7 @@ public class ContentsService {
 	}
 
 
-	public String getContents(int contetnsSeq) throws SQLException{
+	public ContentsVo getContents(int contetnsSeq) throws SQLException{
 		return contentsDao.getContents(contetnsSeq);
 	}
 

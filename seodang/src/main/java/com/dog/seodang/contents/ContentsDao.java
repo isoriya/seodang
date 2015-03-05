@@ -19,7 +19,7 @@ public class ContentsDao {
 		return session.insert("contents.registContents", contentsVo);
 	}
 
-	public String getContents(int contetnsSeq) throws SQLException{
+	public ContentsVo getContents(int contetnsSeq) throws SQLException{
 		return session.selectOne("contents.getContents", contetnsSeq);
 	}
 

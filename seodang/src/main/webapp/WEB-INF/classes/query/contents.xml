@@ -5,8 +5,8 @@
         INSERT INTO contents ( userSeq, title, contents) VALUES (#{userSeq}, #{title}, #{contents}); 
     </insert>
     
-    <select id="getContents" parameterType="int" resultType="string">
-    	SELECT contents FROM contents WHERE contentsSeq=#{contentsSeq};
+    <select id="getContents" parameterType="int" resultType="com.dog.seodang.contents.vo.ContentsVo">
+    	SELECT * FROM contents WHERE contentsSeq=#{contentsSeq};
     </select>
     
     <select id="getContentsList" parameterType="int" resultType="com.dog.seodang.contents.vo.ContentsHeaderVo">
