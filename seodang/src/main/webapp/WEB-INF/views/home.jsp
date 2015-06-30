@@ -9,7 +9,7 @@
 <h1>
 	훈장님 말씀 잘들어라. 
 </h1>
+<a href="j_spring_security_logout">로그아웃</a>
 
-<P>  </P>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.dog.seodang.home;
 
+import java.security.Principal;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -14,8 +15,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -76,6 +81,59 @@ public class HomeController {
 		}
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/test2", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView test2(@RequestBody String body) {
+		logger.info("Welcome test");
+		logger.info("바디= " +  body);
+		
+		List<String> list = new ArrayList<String>();
+		list.add("사이트 관리");
+		list.add("관리자 관리");
+		list.add("공통 코드 관리");
+		list.add("접속 이력");
 
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("1", "cat");
+		map.put("2", "dog");
+		map.put("3", "tiger");
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("jsonView");
+		modelAndView.addObject("menuList", list);
+		modelAndView.addObject("animal", map);
+		String str;
+		try {
+			str = homeService.test();
+			logger.info("결과 a=" + str);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("/login.do")
+	public void login(@RequestParam Map<String, Object> paramMap, ModelMap modelMap) throws Throwable{
+		
+	}
+	
+	@RequestMapping("/loginFail.do")
+	public void loginFail(@RequestParam Map<String, Object> paramMap, ModelMap modelMap) throws Throwable{
+		
+	}
+	
+	@RequestMapping("/main.do")
+	public void main(@RequestParam Map<String, Object> paramMap, ModelMap modelMap, Principal principal) throws Throwable{
+		logger.info("아이디=" + principal.getName());
+	}
+	
+	@RequestMapping("/logout.do")
+	public void logout(@RequestParam Map<String, Object> paramMap, ModelMap modelMap) throws Throwable{
+		
 	}
 }

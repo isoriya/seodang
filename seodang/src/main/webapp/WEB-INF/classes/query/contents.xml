@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="contents">
     <insert id="registContents" parameterType="com.dog.seodang.contents.vo.ContentsVo" useGeneratedKeys="true" keyProperty="contentsSeq">
-        INSERT INTO contents ( userSeq, title, contents) VALUES (#{userSeq}, #{title}, #{contents}); 
+        INSERT INTO contents ( userSeq, title, contentsKor, contentsEng) VALUES (#{userSeq}, #{title}, #{contentsKor}, #{contentsEng}); 
     </insert>
     
     <select id="getContents" parameterType="int" resultType="com.dog.seodang.contents.vo.ContentsVo">
@@ -14,7 +14,7 @@
     </select>
     
     <update id="modifyContents" parameterType="com.dog.seodang.contents.vo.ContentsVo">
-    	UPDATE contents SET title=#{title}, contents=#{contents} where contentsSeq=#{contentsSeq};
+    	UPDATE contents SET title=#{title}, contentsKor=#{contentsKor}, contentsEng=#{contentsEng} where contentsSeq=#{contentsSeq};
     </update>
     
     <delete id="deleteContents" parameterType="int">

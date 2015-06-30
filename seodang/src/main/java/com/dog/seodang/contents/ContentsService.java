@@ -15,7 +15,7 @@ public class ContentsService {
 
 	@Autowired
 	ContentsDao contentsDao;
-
+ 
 
 	public int registContents(ContentsVo contentsVo) throws SQLException{
 		return contentsDao.registContents(contentsVo);
