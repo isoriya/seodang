@@ -33,6 +33,9 @@ public class LoginService implements UserDetailsService{
 		logger.debug("LoginService[loadUserByUsername] userId = " + userId);		 
 		
 		String userPwd = loginDao.getUserPwd(userId);
+		if(userPwd == null) {
+			throw new UsernameNotFoundException("No user found with userId: " + userId);
+		}
 		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
 		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		

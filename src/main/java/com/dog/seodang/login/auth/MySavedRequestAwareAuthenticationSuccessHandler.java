@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
-import org.springframework.security.web.savedrequest.SavedRequest;
-import org.springframework.util.StringUtils;
 
 import com.dog.seodang.util.SedangResult;
 
@@ -42,7 +38,8 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends
 //		}
 		response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getOutputStream().println(JsonException.makeJsonException(SedangResult.CODE.SUCCESS));
+        String result = JsonException.makeJsonException(SedangResult.CODE.SUCCESS, SedangResult.SUCCESS);
+        response.getOutputStream().println(result);
 		clearAuthenticationAttributes(request);
 	}
 

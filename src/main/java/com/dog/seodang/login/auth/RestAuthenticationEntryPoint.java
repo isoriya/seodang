@@ -18,10 +18,9 @@ import com.dog.seodang.util.SedangResult;
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-//        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-        
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getOutputStream().println(JsonException.makeJsonException(SedangResult.CODE.UNAUTHORIZED));
+        String result = JsonException.makeJsonException(SedangResult.CODE.UNAUTHORIZED, authException.getLocalizedMessage());
+        response.getOutputStream().println(result);
     }
 }

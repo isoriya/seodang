@@ -3,7 +3,10 @@ package com.dog.seodang.util;
 public class SedangResult {
 
 	public static final String RESULT = "resultCode";
+	public static final String MESSAGE = "message";
 	
+	public static final String SUCCESS = "success";
+	public static final String FAIL = "fail";
 	public static class CODE {
 
 		// 성공

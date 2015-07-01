@@ -23,6 +23,7 @@ public class MySavedRequestAwareAuthenticationFailHandler extends
 		
 		response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getOutputStream().println(JsonException.makeJsonException(SedangResult.CODE.FAIL));
+        String result = JsonException.makeJsonException(SedangResult.CODE.FAIL, exception.getLocalizedMessage());
+        response.getOutputStream().println(result);
 	}
 }
