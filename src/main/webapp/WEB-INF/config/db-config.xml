@@ -16,6 +16,7 @@
         <beans:property name="url" value="jdbc:mysql://mdev.terracetech.co.kr:3306/seodang?useUnicode=yes&amp;characterEncoding=UTF-8&amp;autoReconnect=true" />
         <beans:property name="username" value="heaven" />
         <beans:property name="password" value="thwnekfrehflxkd!" />
+        <beans:property name="validationQuery" value="Select 1"/>
 	</beans:bean>
 	
  	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

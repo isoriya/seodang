@@ -28,15 +28,17 @@ public class ContentsController {
 	@RequestMapping(value = "/registContents", method = RequestMethod.POST)
 	public ModelAndView registContents(@RequestParam(required=true) int userSeq,
 			@RequestParam(required=true) String title,
-			@RequestParam(required=true) String contents) {
+			@RequestParam(required=true) String contentsKor,
+			@RequestParam(required=true) String contentsEng) {
 		
-		logger.info("[registContents] userSeq=" + userSeq +  " ,title=" + title +  " ,contents=" + contents);
+		logger.info("[registContents] userSeq=" + userSeq +  " ,title=" + title +  " ,contentsKor=" + contentsKor + " ,contentsEng=" + contentsEng);
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			ContentsVo contentsVo = new ContentsVo();
 			contentsVo.setUserSeq(userSeq);
 			contentsVo.setTitle(title);
-			contentsVo.setContents(contents);
+			contentsVo.setContentsKor(contentsKor);
+			contentsVo.setContentsEng(contentsEng);
 			contentsService.registContents(contentsVo);
 			
 			int contentsSeq = contentsVo.getContentsSeq();
@@ -45,7 +47,7 @@ public class ContentsController {
 			modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SUCCESS);
 			modelAndView.addObject("contentsSeq", contentsSeq);
 		} catch (Exception e) {
-			logger.error("[registContents] userSeq=" + userSeq +  " ,contents=" + contents + ""
+			logger.error("[registContents] userSeq=" + userSeq +  " ,contentsKor=" + contentsKor + "" + " ,contentsEng=" + contentsEng
 					+ " ,Exception=" + e.getMessage());
 			modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SERVER_ERROR);
 		}
@@ -103,19 +105,20 @@ public class ContentsController {
 	@RequestMapping(value = "/modifyContents", method = RequestMethod.POST)
 	public ModelAndView modifyContents(@RequestParam(required=true) int contentsSeq,
 			@RequestParam(required=true) String title,
-			@RequestParam(required=true) String contents) {
+			@RequestParam(required=true) String contentsKor,
+			@RequestParam(required=true) String contentsEng) {
 		
-		logger.info("[modifyContents] contentsSeq=" + contentsSeq, " contents=" + contents);
+		logger.info("[modifyContents] contentsSeq=" + contentsSeq, " contentsKor=" + contentsKor + " ,contentsEng=" + contentsEng);
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			ContentsVo contentsVo = new ContentsVo();
 			contentsVo.setContentsSeq(contentsSeq);
 			contentsVo.setTitle(title);
-			contentsVo.setContents(contents);
+			contentsVo.setContentsKor(contentsKor);
+			contentsVo.setContentsEng(contentsEng);
 			boolean result = contentsService.modifyContents(contentsVo);
 			
 			modelAndView.setViewName("jsonView");
-			
 			
 			if(!result) {
 				modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.NO_EXSIST);
@@ -135,7 +138,7 @@ public class ContentsController {
 		
 		logger.info("[deleteContents] contentsSeq=" + contentsSeq);
 		ModelAndView modelAndView = new ModelAndView();
-		try { 
+		try {
 			
 			boolean result = contentsService.deleteContents(contentsSeq);
 			modelAndView.setViewName("jsonView");
@@ -149,6 +152,7 @@ public class ContentsController {
 			logger.error("[deleteContents] contetnsSeq=" + contentsSeq + " ,Exception=" + e.getMessage());
 			modelAndView.addObject(SedangResult.RESULT, SedangResult.CODE.SERVER_ERROR);
 		}
+		logger.info("[deleteContents] contentsSeq=" + contentsSeq);
 		return modelAndView;
 	}
 }
