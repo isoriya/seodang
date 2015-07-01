@@ -135,7 +135,7 @@ public class ContentsController {
 		
 		logger.info("[deleteContents] contentsSeq=" + contentsSeq);
 		ModelAndView modelAndView = new ModelAndView();
-		try {
+		try { 
 			
 			boolean result = contentsService.deleteContents(contentsSeq);
 			modelAndView.setViewName("jsonView");
